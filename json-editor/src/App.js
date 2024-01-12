@@ -1,22 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { useRef } from 'react';
 
-function App() {
+function App() 
+{
+  let fileContent = "empty";
+  const handleChange = (event) =>
+  {
+    return new Promise((resolve, reject) => 
+    {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) =>
+      {
+        fileContent = event.target.result;
+        console.log(fileContent);
+        resolve(fileContent);
+      };
+      reader.onerror = (err) =>
+      {
+        console.log(err);
+        reject(err);
+      }
+      reader.readAsText(file);
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <input
+        type="file"
+        accept="json"
+        onChange={(event) => handleChange(event)}
+      />
       </header>
     </div>
   );

@@ -1,5 +1,5 @@
+// Coyright © Connor deBoer 2024, All Rights Reserved
 import './App.css';
-import { useRef } from 'react';
 import FileDropDown from '../src/FileDropDown.js'
 
 function App() 

@@ -2,56 +2,53 @@
 
 import React from "react";
 import { FileData } from './FileData.js';
+import SplitUp from "./SplitUpFile.js";
+const tab = "   ";
 
 export default class DisplayFile extends React.Component
 {
     constructor(props)
     {
         super(props);
-        document.addEventListener('onFileRead', this.Test);
+
+        // this is a seperate class we created to clean up this script, it contains the functions that don't print anything
+        this.splitUp = new SplitUp(tab, this.RenderObject, this.RenderArray, this.RenderValue);
+
+        // this guy means we wont try and render anything until we get a file
+        // you'll notice this guy is also calling the RenderObject function in 
+        // a round about way, that's because we have parameters for that function 
+        // that the event was placing itself into, which we don't want in this case
+        document.addEventListener('onFileRead', () => {
+            this.RenderObject(FileData.data);
+        });
     }
 
-    Test = () =>
+    // this guy draws an object by calling the the split up function, he also increments nesting
+    RenderObject = (object, name = "", nesting = 0) =>
     {
-        this.RenderObject(FileData.data);
-    }
-
-    RenderField(name, value, type)
-    {
-        return (
-            <input key={`${name}-${type}`} className="inputValue">{value}</input>
-            );
-    }
-        
-    RenderObject = (object, space = "") =>
-    {
+        if (name !== "") console.log(`${tab.repeat(nesting)}${name}`);
+        nesting++;
         for (let [key, value] of Object.entries(object))
         {
-            let type = typeof value;
-            if (type === "object")
-            {
-                if (value === null || value === undefined) continue;
-                if (Array.isArray(value))
-                {
-                    console.log(`${key}:`)
-                    this.RenderArray(value);
-                    continue;
-                }
-
-                console.log(`${key}:`)
-                this.RenderObject(value, "   ");
-                continue;
-            }
-            console.log(`${space}${key}: ${value} === ${type}`);
+            this.splitUp.CallType(key, value, nesting)
         }
     }
-        
-    RenderArray(array)
+
+    // this guy draws an array by call the split up function, he also increments nesting
+    RenderArray = (name, array, nesting) =>
     {
-        for (let value of array)
+        console.log(`${tab.repeat(nesting)}${name}`);
+        nesting++;
+        for (let i = 0; i < array.length; ++i)
         {
-            console.log(`   ${value}`);
+            this.splitUp.CallType(i, array[i], nesting);
         }
+    }
+
+    // TODO: make this actual markup and input fields
+    RenderValue(key, value, type, nesting)
+    {
+        console.log(`${tab.repeat(nesting)}${type} ${key} = ${value}`);
     }
     
     render()

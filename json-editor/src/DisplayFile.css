@@ -1,0 +1,17 @@
+/* Coyright © Connor deBoer 2024, All Rights Reserved */
+.input-container
+{
+    display: flex;
+}
+
+.input-title
+{
+    font-size: medium;
+    margin-right: 10px;
+}
+
+.input-field
+{
+    margin-top: 12px;
+    height: 15px;
+}

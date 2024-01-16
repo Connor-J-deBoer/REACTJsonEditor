@@ -8,8 +8,8 @@ function App()
   return (
     <div className="App">
       <header className="App-header">
-      <FileDropDown />
-      <DisplayFile />
+        <FileDropDown />
+        <DisplayFile />
       </header>
     </div>
   );

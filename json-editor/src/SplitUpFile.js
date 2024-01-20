@@ -1,49 +1,22 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
+
+
 const tab = "---";
 const nestingModifier = 2;
 
+
+
 export default class SplitUp
 {
-    constructor(updateMarkup)
+    constructor(updateMarkup, updateFile)
     {
         this.updateMarkup = updateMarkup;
+        this.updateFile = updateFile;
     }
 
-    // this guy is the 'public' function used in this class, it calls the approperaite 
-    // function based off if it's an object, array, or normal field
-    CallType = (key, value, nesting, parent = "") =>
-    {
-        let type = this.DetermineType(value);
-        if (type === "object")
-        {
-            this.RenderObject(value, key, nesting, parent);
-            nesting--;
-            return;
-        }
+    
 
-        if (type === "array")
-        {
-            this.RenderArray(key, value, nesting, parent);
-            nesting--;
-            return;
-        }
-
-        this.RenderValue(key, value, type, nesting, parent);
-    }
-
-    // this guy figures out what type something is, it's needed because the 
-    // typeof thingy doesn't figure out the difference between an object, array, 
-    // or null, so this guy is just an extra step that is required
-    DetermineType(value)
-    {
-        let type = typeof value;
-        if (type === "object")
-        {
-            if (value === null || value === undefined) return "null";
-            if (Array.isArray(value)) return "array";
-        }
-        return type;
-    }
+    
 
     RenderObject = (object, name = "", nesting = 0, parent = "") =>
     {
@@ -76,19 +49,5 @@ export default class SplitUp
         {
             this.CallType(`${i}`, array[i], nesting, name);
         }
-    }
-
-    RenderValue = (key, value, type, nesting, parent = "") =>
-    {
-        console.log(`${tab.repeat(nesting)}${type} ${key} = ${value}`);
-        const newMarkup = (
-            <div key={`${parent}${key}-${type}-container`} className="input-container" >
-                <h1 className="input-title" >{tab.repeat(nesting * nestingModifier)}</h1>
-                <h1 className="input-title" >{key}:</h1>
-                <input className="input-field" id={`${key}-${type}`} type={type} defaultValue={value} />
-            </div>
-        );
-
-        this.updateMarkup(newMarkup);
     }
 }

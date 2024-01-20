@@ -1,7 +1,7 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
 
 import React from 'react';
-import { FileData } from './FileData.js';
+import { GetFileData, SetFileData } from './FileData.js';
 
 const fileRead = new CustomEvent('onFileRead');
 
@@ -20,18 +20,27 @@ function FileUploader()
         {
             // this is where the json string gets assigned to the fileContent string
             const fileContent = content.target.result;
-            FileData.data = JSON.parse(fileContent);
+            SetFileData({"data": JSON.parse(fileContent)});
             document.dispatchEvent(fileRead);
         };
         reader.readAsText(file);
     }
 
+    const checkValue = () =>
+    {
+        console.log(GetFileData().data);
+    }
+
     return(
-        <input
-            type="file"
-            accept="json"
-            onChange={(event) => handleChange(event)}
-        />
+        <div>
+            <input
+                type="file"
+                accept="json"
+                onChange={(event) => handleChange(event)}
+            />
+
+            <button onClick={checkValue}>check Value</button>
+        </div>
     );
 }
 

@@ -1,0 +1,56 @@
+/* Coyright © Connor deBoer 2024, All Rights Reserved */
+
+.container
+{
+    display: flex;
+}
+
+.input
+{
+    display: flex;
+    color: transparent;
+    width: 125px;
+    height: 30px;
+}
+
+.input::-webkit-file-upload-button
+{
+    visibility: hidden;
+}
+
+.input::before
+{
+    content: 'Select some files';
+    color: var(--ra-c-blue);
+    background: var(--ra-c-dark-blue);
+    border: solid var(--ra-c-green);
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.input:hover::before
+{
+    border-color: var(--ra-c-yellow);
+}
+
+.input:active
+{
+    outline: 0;
+}
+
+.cool-button
+{
+    color: var(--ra-c-blue);
+    background: var(--ra-c-dark-blue);
+    border: solid var(--ra-c-green);
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.cool-button:hover
+{
+    border-color: var(--ra-c-yellow);
+    cursor: pointer;
+}

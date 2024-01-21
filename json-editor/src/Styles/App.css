@@ -1,3 +1,13 @@
+/* Coyright © Connor deBoer 2024, All Rights Reserved */
+:root 
+{
+  --ra-c-green: #34F08A;
+  --ra-c-dark-blue: #1D262F;
+  --ra-c-blue: #5BA7E7;
+  --ra-c-gray: #44433F;
+  --ra-c-yellow: #FFD718;
+}
+
 .App {
   text-align: center;
 }
@@ -14,7 +24,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--ra-c-dark-blue);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

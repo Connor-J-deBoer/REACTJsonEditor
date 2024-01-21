@@ -27,7 +27,7 @@ function DisplayValue(updateMarkup, key, value, type, nesting, parents = [])
 // taking into account all the possible nesting
 const RenderInputField = ({value, type, name, parentNames}) =>
 {
-    const [testValue, setTestValue] = useState(value);
+    const [uiValue, setUIValue] = useState(value);
 
     const updateValue = (newValue) =>
     {
@@ -35,8 +35,7 @@ const RenderInputField = ({value, type, name, parentNames}) =>
 
         if (parentNames.length === 0)
         {
-            console.log(name);
-            fileJson.data[name] = newValue;
+            fileJson.data[name] = type === "number" ? Number(newValue) : newValue;
         }
         else
         {
@@ -48,16 +47,17 @@ const RenderInputField = ({value, type, name, parentNames}) =>
             current[name] = newValue;
         }
         
-        setTestValue(newValue);
+        setUIValue(newValue);
         SetFileData(fileJson);
     }
 
     return(
         <input
             className="input-field"
-            type={type}
-            value={testValue}
-            onChange={event => updateValue(event.target.value)}
+            type={type === "boolean" ? "checkbox" : type}
+            checked={type === "boolean" ? uiValue : undefined}
+            value={type !== "boolean" ? uiValue : undefined}
+            onChange={event => updateValue(type === "boolean" ? event.target.checked : event.target.value)}
         />
     );
 }

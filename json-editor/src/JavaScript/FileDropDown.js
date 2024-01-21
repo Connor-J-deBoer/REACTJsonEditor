@@ -1,6 +1,7 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
 
 import React from 'react';
+import '../Styles/FileDropDown.css';
 import { GetFileData, SetFileData, GetFileName, SetFileName } from './FileData.js';
 
 const fileRead = new CustomEvent('onFileRead');
@@ -32,6 +33,7 @@ function FileUploader()
 
     const download = () =>
     {
+        if (GetFileName() === "") return;
         // get the file data, turn it into a json string, package that into a blob, attach a URL, 
         // create the nessary html link, automatically click the link, remove the link and remove the URL
         const jsonString = JSON.stringify(GetFileData().data, null, 2);
@@ -49,14 +51,15 @@ function FileUploader()
     }
 
     return(
-        <div>
+        <div className='container'>
             <input
+                className="input"
                 type="file"
                 accept="json"
                 onChange={(event) => handleChange(event)}
             />
 
-            <button onClick={download}>Download Modified File</button>
+            <button className='cool-button' onClick={download}>Download Modified File</button>
         </div>
     );
 }

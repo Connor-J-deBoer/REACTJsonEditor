@@ -23,7 +23,7 @@ function DisplayFile()
     });
 
     return(
-        <div>
+        <div className="json-editor">
             {stateMarkup}
         </div>
     );

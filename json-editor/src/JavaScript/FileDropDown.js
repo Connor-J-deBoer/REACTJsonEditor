@@ -26,7 +26,7 @@ function FileUploader()
         reader.readAsText(file);
     }
 
-    const checkValue = () =>
+    const download = () =>
     {
         console.log(GetFileData().data);
     }
@@ -39,7 +39,7 @@ function FileUploader()
                 onChange={(event) => handleChange(event)}
             />
 
-            <button onClick={checkValue}>check Value</button>
+            <button onClick={download}>Download Modified File</button>
         </div>
     );
 }

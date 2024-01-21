@@ -1,23 +1,31 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
+
+// use state lets use have 'reactivity' put simply, when we update a value using 
+// the set function that comes with use state it'll also update the ui, which we need lol
 import { useState } from 'react';
+// grabbing bassically everything from this guy, should probally move Tab and NestingModifier to a 
+// seperate file but I'm honestly just trying to move on to the next project right now
 import { Tab, NestingModifier, GetFileData, SetFileData } from './FileData.js';
 
-function Value(updateMarkup, key, value, type, nesting, parents = [])
+// this guy adds the nesting, title, and input field for the individual values
+function DisplayValue(updateMarkup, key, value, type, nesting, parents = [])
 {
-    console.log(`${Tab.repeat(nesting)}${type} ${key} = ${value}`);
-
     const newMarkup = (
         <div key={`${parents}${key}-${type}-container`} className="input-container" >
             <h1 className="input-title" >{Tab.repeat(nesting * NestingModifier)}</h1>
             <h1 className="input-title" >{key}:</h1>
-            <RenderValue value={value} type={type} name={key} parentNames={parents} />
+            <RenderInputField value={value} type={type} name={key} parentNames={parents} />
         </div>
     );
-
+    
+    // this 'updateMarkup' function does what it says on the tin, it updates the markup so 
+    // that it displays the file data correctly on screen
     updateMarkup(newMarkup);
 }
 
-const RenderValue = ({value, type, name, parentNames}) =>
+// this guy makes sure that the input field is properly connected to the data it's representing, 
+// taking into account all the possible nesting
+const RenderInputField = ({value, type, name, parentNames}) =>
 {
     const [testValue, setTestValue] = useState(value);
 
@@ -37,8 +45,6 @@ const RenderValue = ({value, type, name, parentNames}) =>
             {
                 current = current[parent];
             }
-
-            console.log(current);
             current[name] = newValue;
         }
         
@@ -56,4 +62,4 @@ const RenderValue = ({value, type, name, parentNames}) =>
     );
 }
 
-export default Value;
+export default DisplayValue;

@@ -44,7 +44,7 @@ const RenderInputField = ({value, type, name, parentNames}) =>
             {
                 current = current[parent];
             }
-            current[name] = newValue;
+            current[name] = type === "number" ? Number(newValue) : newValue;
         }
         
         setUIValue(newValue);

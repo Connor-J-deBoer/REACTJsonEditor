@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/REACTJsonEditor/static/css/main.e64adab5.css",
+    "main.js": "/REACTJsonEditor/static/js/main.d45a2429.js",
+    "static/js/787.82bc6ffc.chunk.js": "/REACTJsonEditor/static/js/787.82bc6ffc.chunk.js",
+    "index.html": "/REACTJsonEditor/index.html",
+    "main.e64adab5.css.map": "/REACTJsonEditor/static/css/main.e64adab5.css.map",
+    "main.d45a2429.js.map": "/REACTJsonEditor/static/js/main.d45a2429.js.map",
+    "787.82bc6ffc.chunk.js.map": "/REACTJsonEditor/static/js/787.82bc6ffc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e64adab5.css",
+    "static/js/main.d45a2429.js"
+  ]
+}

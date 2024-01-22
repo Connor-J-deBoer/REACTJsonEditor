@@ -1,7 +1,7 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
 
 import React from 'react';
-import '../Styles/FileDropDown.css';
+import './FileDropDown.css';
 import { GetFileData, SetFileData, GetFileName, SetFileName } from './FileData.js';
 
 const fileRead = new CustomEvent('onFileRead');

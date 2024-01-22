@@ -1,7 +1,7 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
 
 import React, { useState } from "react";
-import '../Styles/DisplayFile.css';
+import './DisplayFile.css';
 import { GetFileData } from './FileData.js';
 import RenderObject from "./RenderObject.js";
 

@@ -1,7 +1,7 @@
 // Coyright © Connor deBoer 2024, All Rights Reserved
-import './Styles/App.css';
-import FileDropDown from './JavaScript/FileDropDown.js';
-import DisplayFile from './JavaScript/DisplayFile.js';
+import './App.css';
+import FileDropDown from './FileDropDown.js';
+import DisplayFile from './DisplayFile.js';
 
 function App() 
 {
